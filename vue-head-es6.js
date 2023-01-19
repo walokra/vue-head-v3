@@ -180,7 +180,7 @@
         }
         util.handle(obj, key, 'head', update)
       })
-      this.$emit('okHead')
+      // this.$emit('okHead')
     }
 
     function destroy () {

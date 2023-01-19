@@ -199,7 +199,7 @@
         }
         util.handle(obj, key, 'head', update)
       })
-      self.$emit('okHead')
+      // self.$emit('okHead')
     }
 
     /**
