@@ -1,12 +1,12 @@
 {
-  "name": "vue-head",
-  "version": "2.2.0",
+  "name": "vue-head-v3",
+  "version": "3.0.0",
   "description": "Manipulating the meta information of the head tag, a simple and easy way",
   "main": "vue-head.js",
   "types": "vue-head.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/ktquez/vue-head.git"
+    "url": "git+ssh://git@github.com/walokra/vue-head-v3.git"
   },
   "keywords": [
     "head",
@@ -18,9 +18,9 @@
   "author": "Alan Albuquerque - ktquez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ktquez/vue-head/issues"
+    "url": "https://github.com/walokra/vue-head-v3/issues"
   },
-  "homepage": "https://github.com/ktquez/vue-head#readme",
+  "homepage": "https://github.com/walokra/vue-head-v3#readme",
   "scripts": {
     "test": "./node_modules/.bin/karma start karma.conf.js"
   },
