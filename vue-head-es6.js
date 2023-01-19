@@ -189,43 +189,25 @@
       util.undo()
     }
 
-    // v1
-    if (Vue.version.match(/[1].(.)+/g)) {
+    if (Vue.version.match(/[3].(.)+/g)) {
       Vue.mixin({
-        ready () {
+        mounted: function () {
           init.call(this)
         },
-        destroyed () {
+        beforeUnmount: function () {
           destroy.call(this)
         },
-        events: {
-          updateHead () {
+        methods: {
+          updateHead() {
             init.call(this, true)
             util.update()
           }
         }
       })
     }
-    // v2
-    if (Vue.version.match(/[2].(.)+/g)) {
-      Vue.mixin({
-        created () {
-          this.$on('updateHead', () => {
-            init.call(this, true)
-            util.update()
-          })
-        },
-        mounted () {
-          init.call(this)
-        },
-        beforeDestroy () {
-          destroy.call(this)
-        }
-      })
-    }
   }
 
-  VueHead.version = '2.2.0'
+  VueHead.version = '3.0.0'
 
   // auto install
   if (typeof Vue !== 'undefined') {
