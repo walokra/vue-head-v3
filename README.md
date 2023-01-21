@@ -1,44 +1,35 @@
 # vue-head
 
-Manipulating the meta information of the head tag, a simple and easy way  
+Manipulating the meta information of the head tag, a simple and easy way
 Motivated by [HEAD](https://github.com/joshbuchea/HEAD)
 
----
-
-**For syntax of the previous version [click here](https://github.com/ktquez/vue-head/tree/v1.0.5)**
-
----
+Forked from [https://github.com/ktquez/vue-head](ktquez/vue-head) and updated for Vue 3.
 
 ## Usage
-**by CDN**
-```html
-...
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/*version*/vue.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/*version*/vue-router.min.js"></script>
-<script src="https://cdn.rawgit.com/ktquez/vue-head/master/vue-head.js"></script>
-<script>
-  // Code here
-</script>
-```
-See how to use with [this example](https://github.com/ktquez/vue-head/blob/master/example/index.html)
+
+See how to use with [this example](https://github.com/walokra/vue-head/blob/master/example/index.html)
 
 
 **With NPM**
+
 ```shell
 npm install vue-head --save
 ```
 
 ```javascript
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createApp } from 'vue'
+import { createRouter } from 'vue-router'
 import VueHead from 'vue-head'
 
-Vue.use(VueHead)
-Vue.use(VueRouter)
-...
+const router = createRouter()
+
+const app = createApp(App)
+
+app.use(VueHead)
+app.use(router)
 ```
 
-## Examples (New syntax)
+## Examples
 ```javascript
 var myComponent = Vue.extend({
   data: function () {
@@ -75,7 +66,7 @@ var myComponent = Vue.extend({
     link: [
       { rel: 'canonical', href: 'http://example.com/#!/contact/', id: 'canonical' },
       { rel: 'author', href: 'author', undo: false }, // undo property - not to remove the element
-      { rel: 'icon', href: require('./path/to/icon-16.png'), sizes: '16x16', type: 'image/png' }, 
+      { rel: 'icon', href: require('./path/to/icon-16.png'), sizes: '16x16', type: 'image/png' },
       // with shorthand
       { r: 'icon', h: 'path/to/icon-32.png', sz: '32x32', t: 'image/png' },
       // ...
@@ -126,16 +117,18 @@ export default {
   }
 }
 ```
+
 ```css
 <style scoped>
   /* Code here */
 </style>
 ```
-For more questions, [check this example](https://github.com/ktquez/vue-head/blob/master/example/index.html)
+For more questions, [check this example](https://github.com/walokra/vue-head/blob/master/example/index.html)
 
 ## Custom title
+
 You can customize the page title with tab and complement, just add the properties `separator` and `complement` object in title
-Separator by default uses the pipe character `|` and complement by default uses the title of the html document  
+Separator by default uses the pipe character `|` and complement by default uses the title of the html document
 
 ```javascript
 head: {
@@ -147,21 +140,27 @@ head: {
   //omited
 }
 ```
-*If not please complement defines an empty value*
 
 ## Default custom title
+
 If you'd like to set default custom title options on every component you can pass options to VueHead when you're registering it for Vue, just like in example below.
+
 ```javascript
+import { createApp } from 'vue'
 const VueHead = require('vue-head')
 
-Vue.use(VueHead, {
+const app = createApp(App)
+
+app.use(VueHead, {
   separator: '-',
   complement: 'My Complement'
 })
 ```
 
 ## Using `this`
+
 For using values with `this`, it is necessary to return the object through a function
+
 ```javascript
 data: {
   myData: 'My description'
@@ -172,14 +171,15 @@ meta: function () {
     { name: 'description', content: this.myData }
   ]
 }
-
-``` 
+```
 
 The whole `head` option can be a function.
 
 ## Undo elements
-All created tags will be removed as you leave the component, but you may want it to be not broken and remain in the DOM.   
+
+All created tags will be removed as you leave the component, but you may want it to be not broken and remain in the DOM.
 So you should set `undo: false`
+
 ```javascript
 style: [
   { type: 'text/css', inner: 'body { background-color: #000; color: #fff}', undo: false }
@@ -187,40 +187,23 @@ style: [
 ```
 
 ## Replace content the elements
-There are some tags that are unique and that only need to update the content, such as meta tags `name="description"` or `rel="canonical"`.  
-Therefore, it is necessary to define a `id`, so that the element is found and is made the update correctly, avoiding duplicates tags.  
+
+There are some tags that are unique and that only need to update the content, such as meta tags `name="description"` or `rel="canonical"`.
+Therefore, it is necessary to define a `id`, so that the element is found and is made the update correctly, avoiding duplicates tags.
+
 ```javascript
 meta: [
   { name: 'description', content: 'A description of the page', id: 'desc' }
 ]
 ```
 
-## Event emitted 
-### Vue 1.*
-At some point you may want to do something after the DOM is complete with the changes, to this the vue-head emits through the key `okHead`.  
-With this, you can hear through the `events` option of your instance component.
-```javascript
-// omited
-events: {
-  okHead: function () {
-    // Do something
-  }
-},
-```
-### Vue 2.*
-```javascript
-created: function () {
-  this.$on('okHead', function () {
-    // Do Something
-  });
-}
-```
-
 ## Update elements with asynchronous data or after page loaded
+
 Keep the data tags updated through an update of the elements that have changed data, which are the reactive data of your component.
 It is not automatic if you want to upgrade, simply issue the event `updateHead` soon after changing your data.
 
-For example:  
+For example:
+
 ```javascript
 // omited
 methods: {
@@ -238,16 +221,15 @@ methods: {
 
 
 ## Keep alive
-Supported only in Vue next >2.0.*, Because it uses the new hooks activated and deactivated.  
-*Obs: In version <1.0. * Using making prompt to maintain the element in the document.* 
 
+Supported only in Vue next >2.0.*, Because it uses the new hooks activated and deactivated.
 
 ## Shorthand property
 
 property        | shorthand     | used tags
 --------------- | ------------- | ------------
 charset         | `ch`          | `meta`
-target          | `tg`          | `base` 
+target          | `tg`          | `base`
 name            | `n`           | `meta`
 http-equiv      | `he`          | `meta`
 itemprop        | `ip`          | `meta`
@@ -261,20 +243,14 @@ scheme          | `sc`          | `script`
 src             | `s`           | `script`
 async           | `a`           | `script`
 defer           | `d`           | `script`
-inner           | `i`           | `script` `style` 
+inner           | `i`           | `script` `style`
 
-## Support 
-- Vue.js 2.0.*
-- Vue.js 1.0.*
+## Support
+
+- Vue.js 3.0.*
 
 ## Contributing
+
 - Check the open issues or open a new issue to start a discussion around your feature idea or the bug you found.
 - Fork repository, make changes, add your name and link in the authors session readme.md
 - Send a pull request
-
-If you want a faster communication, find me on [@ktquez](https://twitter.com/ktquez)
-
-**thank you**
-
-
-
