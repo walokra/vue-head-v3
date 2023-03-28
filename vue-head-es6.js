@@ -164,7 +164,7 @@
     installed = true
 
     if (options) {
-      Vue.util.extend(opt, options)
+      Object.assign(opt, options)
     }
 
     function init (update) {
