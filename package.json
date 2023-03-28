@@ -6,7 +6,7 @@
   "types": "vue-head.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/walokra/vue-head.git"
+    "url": "git+ssh://git@github.com/walokra/vue-head-v3.git"
   },
   "keywords": [
     "head",
@@ -18,24 +18,24 @@
   "author": "Marko Wallin <marko.wallin@iki.fi>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/walokra/vue-head/issues"
+    "url": "https://github.com/walokra/vue-head-v3/issues"
   },
-  "homepage": "https://github.com/walokra/vue-head#readme",
+  "homepage": "https://github.com/walokra/vue-head-v3#readme",
   "scripts": {
     "test": "./node_modules/.bin/karma start karma.conf.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
+    "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
-    "@vue/compiler-sfc": "^3.2.45",
+    "@vue/compiler-sfc": "^3.2.47",
     "babel-loader": "^9.1.2",
-    "jasmine-core": "^4.5.0",
+    "jasmine-core": "^4.6.0",
     "karma": "^6.4.1",
     "karma-babel-preprocessor": "^8.0.2",
     "karma-chrome-launcher": "^3.1.1",
     "karma-jasmine": "^5.1.0",
     "karma-webpack": "^5.0.0",
-    "vue": "^3.2.45",
+    "vue": "^3.2.47",
     "vue-loader": "^17.0.1"
   }
 }
